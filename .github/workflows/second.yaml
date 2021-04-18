@@ -1,18 +1,13 @@
----
-name: Second
-
+name: Repository Dispatch
 on:
-  workflow_run:
-    workflows:
-      - Test
-    types:
-      - completed
-
+  repository_dispatch:
+    types: [my-event]
 jobs:
-  test-job:
-    name: Test Step
+  myEvent:
     runs-on: ubuntu-latest
     steps:
-      - run: env
-      - run: echo "${{ toJSON(github.event.workflow_run) }}"
-      - run: echo "$action_fruit"
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.client_payload.ref }}
+      - run: echo ${{ github.event.client_payload.sha }}
+      - run: echo ${{ github.event.client_payload.test }}
