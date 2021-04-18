@@ -14,5 +14,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: env
-      - run: "${{ toJSON(github.event.workflow_run) }}"
+      - run: echo "${{ toJSON(github.event.workflow_run) }}"
       - run: echo "$action_fruit"
