@@ -15,6 +15,6 @@ jobs:
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT }}
           event-type: my-event
           client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}", "test": "test message"}'
