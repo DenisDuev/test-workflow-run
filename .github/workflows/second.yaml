@@ -1,0 +1,18 @@
+---
+name: Second
+
+on:
+  workflow_run:
+    workflows:
+      - Test
+    types:
+      - completed
+
+jobs:
+  test-job:
+    name: Test Step
+    runs-on: ubuntu-latest
+    steps:
+      - run: env
+      - run: "${{ toJSON(github.event.workflow_run) }}"
+      - run: echo "$action_fruit"
